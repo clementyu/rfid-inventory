@@ -11,7 +11,7 @@ require('dotenv').config(); // Load environment variables from .env file
 // --- Constants ---
 const Constants = {
   // Serial port defaults
-  DEFAULT_PORT: '/dev/ttyUSB0',
+  DEFAULT_PORT: '/dev/ttyS0',
   DEFAULT_BAUDRATE: 115200,
 
   // Modes

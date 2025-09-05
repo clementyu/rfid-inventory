@@ -54,7 +54,26 @@ Before you begin, ensure you have the following hardware:
   * Raspberry Pi 4
   * microSD card (32GB)
 
-### **Initial Setup**
+
+### **Hardware Setup**
+* Wire the J10 connector to the Raspberry Pi 4 and plugin the DC adaptor as below: 
+
+![](rfid-inventory-hardware.jpeg)
+  
+* The pinout of `J10` near by the upper right coner is illustrated as below. 
+![](rfid-inventory-reader-lite-pcb-pinout.png)
+
+**J10 Pinout fron left to right:**
+  * J10-p1: GND
+  * J10-p2: SLR1100 UART Rx (to Raspberry Pi GPIO14)
+  * J10-p3: SLR1100 UART Tx (to Raspberry Pi GPIO15)
+  * J10-04: not in use. 
+
+* [Optional] Here is the pinout of the connector for the 10-pin ribbon cable. This is for those who is confident on building a customized ribbon cable which has DC 12V, UART port, and the other GPIO control.
+![](rfid-inventory-reader-lite-pinout-3d.png)
+
+
+### **Software Setup**
 
 1. **Install Raspberry Pi Imager**: Download and install the [Raspberry Pi Imager](https://www.raspberrypi.com/software/) on your computer.  
 2. **Flash the OS Image**: Use the imager to flash the **Raspberry Pi OS (64-bit)** onto your microSD card. Before writing the image, click the settings icon (⚙️) to configure the OS. Make sure to:  
@@ -120,6 +139,7 @@ nvm use 22
 The project also requires the express, ws, and serialport packages. You can install them by running:
 
 ```bash
+cd /home/pi/rfid-inventory
 npm install express ws serialport
 ```
 
@@ -143,7 +163,7 @@ id,EPC,item
 To start the application, run the index.js file with Node.js.
 
 ```bash
-node index.js --mode=inventory --inventory=./work/inventory.csv --refresh-period=10 --dbg=0
+node index.js --mode=inventory --inventory=/home/pi/rfid-inventory/work/inventory.csv --refresh-period=5 --dbg=0 -p /dev/ttyS0 -b 115200
 ```
 
 By default, the application will start in inventory mode and check for the inventory.csv file. The `web interface` will be available at http://rfid-inventory.local:8080.
@@ -196,7 +216,7 @@ sudo env PATH=$PATH:/home/pi/.nvm/versions/node/v22.18.0/bin /usr/local/lib/node
 
 ```bash
 cd /home/pi/rfid-inventory
-pm2 start index.js --name rfid-inventory -- --mode=inventory --inventory=/home/pi/rfid-inventory/work/inventory.csv --refresh-period=5 --dbg=0 -p /dev/ttyUSB0 -b 115200
+pm2 start index.js --name rfid-inventory -- --mode=inventory --inventory=/home/pi/rfid-inventory/work/inventory.csv --refresh-period=5 --dbg=0 -p /dev/ttyS0 -b 115200
 pm2 save
 sudo reboot -p
 ```

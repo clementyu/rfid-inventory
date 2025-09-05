@@ -63,11 +63,11 @@ Before you begin, ensure you have the following hardware:
 * The pinout of `J10` near by the upper right coner is illustrated as below. 
 ![](rfid-inventory-reader-lite-pcb-pinout.png)
 
-**J10 Pinout fron left to right:**
-  * J10-p1: GND
-  * J10-p2: SLR1100 UART Rx (to Raspberry Pi GPIO14)
-  * J10-p3: SLR1100 UART Tx (to Raspberry Pi GPIO15)
-  * J10-04: not in use. 
+**J10 Pinout from `left` to `right` :**
+  * `p1`: GND
+  * `p2`: SLR1100 `UART Rx` (will connect to Raspberry Pi `GPIO14 TXD0`)
+  * `p3`: SLR1100 `UART Tx` (will connect to Raspberry Pi `GPIO15 RXD0`)
+  * `04`: not in use. 
 
 * [Optional] Here is the pinout of the connector for the 10-pin ribbon cable. This is for those who is confident on building a customized ribbon cable which has DC 12V, UART port, and the other GPIO control.
 ![](rfid-inventory-reader-lite-pinout-3d.png)

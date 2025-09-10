@@ -108,7 +108,7 @@ ssh pi@rfid-inventory.local
    * If you run everything above right, the UART port of TXD0/RXD0 will be available as `/dev/serial0` and `/dev/ttyS0` on Raspberry Pi 4. 
 
 
-### **Setup the  doftware on Raspberry Pi 4**
+### **Setup the software on Raspberry Pi 4**
 
 First, git clone the code with the following command 
 
